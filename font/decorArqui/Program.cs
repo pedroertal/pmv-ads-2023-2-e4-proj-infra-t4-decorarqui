@@ -4,7 +4,13 @@ using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var twilioAccountSid = "YOUR_TWILIO_ACCOUNT_SID";
+var twilioAuthToken = "YOUR_TWILIO_AUTH_TOKEN";
+var twilioNumber = "YOUR_TWILIO_PHONE_NUMBER";
+
 // Add services to the container.
+builder.Services.AddSingleton(new Whatsapp(twilioAccountSid, twilioAuthToken, twilioNumber));
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.Configure<decorArquiDatabaseSettings>(builder.Configuration.GetSection("DevNetStorageDatabase"));
